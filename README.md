@@ -1,5 +1,5 @@
 # RxJS
-[[Github Pages](https://igor-chazov.github.io/ahj-hw-rxjs-polling)]
+[![Build status](https://ci.appveyor.com/api/projects/status/d5oqd05cajlsqj05?svg=true)](https://ci.appveyor.com/project/igor-chazov/ahj-hw-rxjs-polling) [[Github Pages](https://igor-chazov.github.io/ahj-hw-rxjs-polling)]
 
 ---
 
