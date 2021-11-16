@@ -1,0 +1,50 @@
+.pooling {
+  width: 100%;
+  min-width: 450px;
+}
+
+.pooling-center {
+  margin: 0 auto;
+}
+
+.pooling__header {
+  background-color: white;
+  border: 1px solid #bbbaba;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.list-pooling__message:not(:last-child) {
+  margin-bottom: -1px;
+}
+
+.message-pooling {
+  background-color: white;
+  border: 1px solid #bbbaba;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  padding: 0.8rem;
+}
+
+.message-pooling__body {
+  display: flex;
+  align-items: center;
+}
+
+.message-pooling__column:not(:last-child) {
+  padding-right: 0.5rem;
+}
+
+.message-pooling__from {
+  flex: 1 1 40%;
+  overflow-wrap: anywhere;
+}
+
+.message-pooling__subject {
+  flex: 1 1 40%;
+}
+
+.message-pooling__received {
+  flex: 1 1 20%;
+  text-align: right;
+}
