@@ -1,6 +1,6 @@
 import { ajax } from 'rxjs/ajax';
 import { interval, of } from 'rxjs';
-import { map, switchMap, catchError } from 'rxjs/operators';
+import { takeWhile, switchMap, catchError } from 'rxjs/operators';
 import poolingHTML from './pooling.html';
 import './pooling.css';
 import Message from '../Message/Message';
@@ -14,6 +14,7 @@ export default class Pooling {
     };
 
     this.messages = [];
+    this.lastId = '';
     this.url = new URL('https://ahj-hw-rxjs-pollingt-backend.herokuapp.com/');
 
     this.init(parent);
@@ -37,10 +38,9 @@ export default class Pooling {
   }
 
   getMessages() {
-    const messages$ = interval(1000)
+    interval(1000)
       .pipe(
-        map(() => (this.messages.length === 0 ? '' : this.messages[this.messages.length - 1].id)),
-        switchMap((id) => ajax.getJSON(`${this.url}messages/unread/${id}`)
+        switchMap(() => ajax.getJSON(`${this.url}messages/unread/${this.lastId}`)
           .pipe(
             catchError(() => of({
               status: 'ok',
@@ -48,13 +48,13 @@ export default class Pooling {
               messages: [],
             })),
           )),
+        takeWhile((response) => response.status !== 'finish' || (response.status === 'finish' && response.messages.length === 100)),
       )
       .subscribe({
         next: (response) => {
-          if (response.status === 'finish') messages$.unsubscribe();
-
           this.messages.push(...response.messages);
           this.showMessages(response.messages);
+          this.lastId = this.messages.length === 0 ? '' : this.messages[this.messages.length - 1].id;
         },
         // eslint-disable-next-line no-console
         error: (error) => console.log('Error', error),

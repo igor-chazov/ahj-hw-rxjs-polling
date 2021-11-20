@@ -8,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'assets/[name][hash][ext]',
     publicPath: '',
-    // clean: true,
+    clean: true,
   },
   module: {
     rules: [
